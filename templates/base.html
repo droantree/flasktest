@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>PRP App</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	body {font-family: Arial, Helvetica, sans-serif;}
+	* {
+	  box-sizing: border-box;
+	}
+
+	/* Create two equal columns that floats next to each other */
+	.column {
+	  float: left;
+	  width: 50%;
+	  padding: 10px;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	
+	.rightbutton {
+		text-align: right;
+	}
+	</style>
+	<script src="static/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+	<div class="row">
+	  <div class="column">
+	    <h2>Search:</h2>
+        <p>
+		  <p class="rightbutton" style="width:80%"><input type="button" value="search" onclick="dosearch();"></p>
+		  <textarea id="searchterms" style="width:80%; height:20em;"></textarea>
+		</p>
+	  </div>
+	  <div class="column" id="rhs">
+			<h2>Best matches:</h2>
+			<div id="resultsblock"></div>
+	  </div>
+	</div>
+
+	<script>
+	$(document).ready(function(){
+    //alert("ready!");
+	});
+
+	function dosearch(){
+    $('#resultsblock').text('');
+		
+		var url = 'process';
+    var search = $("#searchterms").val();
+		$.get(url, search)
+		.done(function(data) {
+			$('#resultsblock').text(data);
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			alert( "error: " + errorThrown);
+		});
+	}
+
+  </script>
+
+</body>
+</html>
