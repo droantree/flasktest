@@ -46,6 +46,7 @@ CREATE TABLE `donalschema`.`conv_events` (
   `ev_id` INT NOT NULL AUTO_INCREMENT,
   `conv_id` INT NULL,
   `evtype` VARCHAR(255) NULL COMMENT 'Event type - should be one of INTENT_IDENTIFIED, INTENT_WRONG, ESCALATE, ABANDON, SUCCESS, etc.',
+  `evvalue` VARCHAR(255) NULL COMMENT 'This would hold any value associated with the event, corresponding to its type. For example, an INTENT_IDENTIFICATION event might use the evvalue to store the intent.',
   `evtime` DATETIME NULL,
   PRIMARY KEY (`ev_id`))
 COMMENT = 'Conversation events that we want to track.';
